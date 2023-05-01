@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("")
+@RequestMapping("/movies")
 public class MovieController {
 
     @Autowired
@@ -19,27 +19,27 @@ public class MovieController {
     @Autowired
     private MovieRepository movieRepository;
 
-    @PostMapping("")
+    @PostMapping
     public ResponseEntity<Movie> saveMovie(@RequestBody Movie movie) {
         return new ResponseEntity<>(movieService.saveMovie(movie), HttpStatus.CREATED);
     }
 
-    @GetMapping("")
+    @GetMapping
     public ResponseEntity<List<Movie>> getAllMovies() {
         return new ResponseEntity<>(movieService.getAllMovies(), HttpStatus.OK);
     }
 
-    @GetMapping("")
+    @GetMapping
     public ResponseEntity<Movie> getMovieByMovieId(@PathVariable("movieId") Long movieId) {
         return new ResponseEntity<>(movieService.getMovieByMovieId(movieId), HttpStatus.OK);
     }
 
-    @PutMapping("")
+    @PutMapping
     public ResponseEntity<Movie> updateMovie(@RequestBody Movie movie, @PathVariable("movieId") Long movieId) {
         return new ResponseEntity<>(movieService.updateMovie(movie, movieId), HttpStatus.ACCEPTED);
     }
 
-    @DeleteMapping("")
+    @DeleteMapping
     public void deleteMovieByMovieId(@PathVariable("movieId") Long movieId) {
         movieService.deleteMovieByMovieId(movieId);
     }

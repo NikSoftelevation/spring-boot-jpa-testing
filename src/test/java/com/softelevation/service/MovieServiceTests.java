@@ -36,11 +36,13 @@ public class MovieServiceTests {
     @BeforeEach
     public void init() {
         avatarMovie = new Movie();
+        avatarMovie.setId(1L);
         avatarMovie.setName("Avatar");
         avatarMovie.setGenera("Action");
         avatarMovie.setReleaseDate(LocalDate.of(2000, Month.APRIL, 22));
 
         titanicMovie = new Movie();
+        titanicMovie.setId(2L);
         titanicMovie.setName("Titanic");
         titanicMovie.setGenera("Romance");
         titanicMovie.setReleaseDate(LocalDate.of(1999, Month.MAY, 20));
@@ -100,7 +102,7 @@ public class MovieServiceTests {
 
     @Test
     public void deleteMovie() {
-        
+
         when(movieRepository.findById(anyLong())).thenReturn(Optional.of(avatarMovie));
         doNothing().when(movieRepository).delete(any(Movie.class));
 
